@@ -47,6 +47,20 @@
   } else if (page.id === 'page2') {
     page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
     navigator.geolocation.getCurrentPosition(showPosition);
+    const Url = 'https://cn415-faaa8.firebaseio.com/logs.json';
+let Data = {
+  latitude:position.coords.latitude,
+  longitude:position.coords.longitude
+};
+const Params = {
+  headers:{ 
+    'Content-Type':'application/json'
+  },
+  body:JSON.stringify(Data),
+  method:'POST'
+};
+console.log(JSON.stringify(Data));
+fetch(Url, Params).then(data=>{return data.json();}).then(res=>{console.log(res);});
   }
 });
 </script>
